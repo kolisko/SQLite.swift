@@ -701,6 +701,9 @@ users.filter(id == 1)
 users.filter([1, 2, 3, 4, 5].contains(id))
 // SELECT * FROM "users" WHERE ("id" IN (1, 2, 3, 4, 5))
 
+users.filter([1, 2, 3, 4, 5].containsNot(id))
+// SELECT * FROM "users" WHERE ("id" NOT IN (1, 2, 3, 4, 5))
+
 users.filter(email.like("%@mac.com"))
 // SELECT * FROM "users" WHERE ("email" LIKE '%@mac.com')
 
@@ -747,12 +750,13 @@ SQLite.swift defines a number of operators for building filtering predicates. Op
 
 ###### Filtering Functions
 
-| Swift      | Types                   | SQLite  |
-| ---------- | ----------------------- | ------- |
-| `like`     | `String -> Bool`        | `LIKE`  |
-| `glob`     | `String -> Bool`        | `GLOB`  |
-| `match`    | `String -> Bool`        | `MATCH` |
-| `contains` | `(Array<T>, T) -> Bool` | `IN`    |
+| Swift         | Types                   | SQLite   |
+| ------------- | ----------------------- | -------- |
+| `like`        | `String -> Bool`        | `LIKE`   |
+| `glob`        | `String -> Bool`        | `GLOB`   |
+| `match`       | `String -> Bool`        | `MATCH`  |
+| `contains`    | `(Array<T>, T) -> Bool` | `IN`     |
+| `containsNot` | `(Array<T>, T) -> Bool` | `NOT IN` |
 
 
 <!-- TODO
