@@ -625,7 +625,7 @@ extension CollectionType where Generator.Element : Value, Index.Distance == Int 
     /// collection.
     ///
     ///     let name = Expression<String>("name")
-    ///     ["alice", "betty"].contains(name)
+    ///     ["alice", "betty"].containsNot(name)
     ///     // "name" NOT IN ('alice', 'betty')
     ///
     /// - Parameter pattern: A pattern to match.
@@ -641,7 +641,7 @@ extension CollectionType where Generator.Element : Value, Index.Distance == Int 
     /// collection.
     ///
     ///     let name = Expression<String?>("name")
-    ///     ["alice", "betty"].contains(name)
+    ///     ["alice", "betty"].containsNot(name)
     ///     // "name" NOT IN ('alice', 'betty')
     ///
     /// - Parameter pattern: A pattern to match.
