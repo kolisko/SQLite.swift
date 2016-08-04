@@ -621,6 +621,38 @@ extension CollectionType where Generator.Element : Value, Index.Distance == Int 
         return "IN".infix(expression, Expression<Void>("(\(templates))", map { $0.datatypeValue }))
     }
 
+    /// Builds a copy of the expression prepended with an `NOT IN` check against the
+    /// collection.
+    ///
+    ///     let name = Expression<String>("name")
+    ///     ["alice", "betty"].contains(name)
+    ///     // "name" NOT IN ('alice', 'betty')
+    ///
+    /// - Parameter pattern: A pattern to match.
+    ///
+    /// - Returns: A copy of the expression prepended with an `NOT IN` check against
+    ///   the collection.
+    @warn_unused_result public func containsNot(expression: Expression<Generator.Element>) -> Expression<Bool> {
+        let templates = [String](count: count, repeatedValue: "?").joinWithSeparator(", ")
+        return "NOT IN".infix(expression, Expression<Void>("(\(templates))", map { $0.datatypeValue }))
+    }
+
+    /// Builds a copy of the expression prepended with an `NOT IN` check against the
+    /// collection.
+    ///
+    ///     let name = Expression<String?>("name")
+    ///     ["alice", "betty"].contains(name)
+    ///     // "name" NOT IN ('alice', 'betty')
+    ///
+    /// - Parameter pattern: A pattern to match.
+    ///
+    /// - Returns: A copy of the expression prepended with an `NOT IN` check against
+    ///   the collection.
+    @warn_unused_result public func containsNot(expression: Expression<Generator.Element?>) -> Expression<Bool?> {
+        let templates = [String](count: count, repeatedValue: "?").joinWithSeparator(", ")
+        return "NOT IN".infix(expression, Expression<Void>("(\(templates))", map { $0.datatypeValue }))
+    }
+
 }
 
 /// Builds a copy of the given expressions wrapped with the `ifnull` function.
